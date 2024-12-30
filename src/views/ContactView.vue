@@ -1,8 +1,10 @@
 <template>
-    <Navbar></Navbar>
+    <Navbar />
+
     <main>
         <h1 class="text-center">This is Contact Page</h1>
-    </main>
+    </main> 
+    
 </template>
 
 <script setup>

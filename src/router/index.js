@@ -58,6 +58,11 @@ const router = createRouter({
   ],
 })
 
+
+
+
+// to change tab title
+/*
 router.beforeEach((to, from, next) => {
   if(to.meta && to.meta.title){  
     document.title = to.meta.title;   
@@ -66,6 +71,7 @@ router.beforeEach((to, from, next) => {
   }
   next()
 })
+  */
 
 // router.beforeEach((to, from,next) => {  
 //   document.title = to.meta?.title ?? 'Default Title';  

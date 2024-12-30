@@ -1,10 +1,12 @@
 <template>
-    <Navbar></Navbar>
+    <Navbar />
+
     <main>
         <h1 class="text-center">
             This is About Page
         </h1>
     </main>
+
 </template>
 
 <script setup>
