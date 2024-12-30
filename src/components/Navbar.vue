@@ -14,13 +14,22 @@ import { RouterLink } from 'vue-router';
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <RouterLink class="nav-link active" aria-current="page" :to="{name : 'home'}">Home</RouterLink>
+                    <RouterLink class="nav-link" aria-current="page" :to="{name : 'home'}">
+                        <span><i class="fa-solid fa-house"></i></span>
+                        <span class="ps-2">Home</span>
+                    </RouterLink>
                 </li>
                 <li class="nav-item">
-                    <RouterLink class="nav-link" :to="{ name : 'about' }">About</RouterLink>
+                    <RouterLink class="nav-link" :to="{ name : 'about' }">
+                        <span><i class="fa-solid fa-user"></i></span>
+                        <span class="ps-2">About</span>
+                    </RouterLink>
                 </li>
                 <li class="nav-item">
-                    <RouterLink class="nav-link" :to="{name : 'contact'}">Contact</RouterLink>
+                    <RouterLink class="nav-link" :to="{name : 'contact'}">
+                        <span><i class="fa-solid fa-phone-volume"></i></span>
+                        <span class="ps-2">Contact</span>
+                    </RouterLink>
                 </li>
                 
             </ul>
