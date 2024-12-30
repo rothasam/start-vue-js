@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row d-flex">
             <div class="col-4 m-auto d-flex flex-column justify-content-center" style="height: 100vh;">
-                <div class="form-wrap">
+                <div class="form-wrap animate__animated animate__fadeIn">
                     <form action="">
                         <h3 class="fw-bold">Register</h3>
                         <div class="mb-3">
