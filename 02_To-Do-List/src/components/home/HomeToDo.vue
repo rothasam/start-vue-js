@@ -12,13 +12,13 @@
 
             <ul class="list-group">
               <li v-for="task in state.tasks" :key="task.id" class="list-group-item">
-                <div class="d-flex justify-content-between align-items-center">
+                <div class="d-flex justify-content-between">
                   <span :class="{'text-decoration-line-through' : task.is_completed}" >{{ task.id }}. {{ task.name }}</span>
                   <div class="d-flex gap-2">
-                    <button v-show="!task.is_completed" type="button" class="btn btn-warning"><i class="bi bi-pencil-square"></i></button>
-                    <button type="button" class="btn btn-danger"><i class="bi bi-trash3"></i></button>
-                    <button v-show="!task.is_completed" type="button" class="btn btn-success"><i class="bi bi-check-circle"></i></button>
-                    <button v-show="task.is_completed" type="button" class="btn btn-dark"><i class="bi bi-x-circle"></i></button>
+                    <a @click="editTask(task.id)" v-show="!task.is_completed" role="button" class="text-warning"><i class="bi bi-pencil-square"></i></a>
+                    <a @click="deleteTask(task.id)" role="button" class=" text-danger"><i class="bi bi-trash3"></i></a>
+                    <a @click="taskAction(task.id,'completed')" v-show="!task.is_completed" role="button" class=" text-success"><i class="bi bi-check-circle"></i></a>
+                    <a @click="taskAction(task.id,'cancel')" v-show="task.is_completed" role="button" class=" text-dark"><i class="bi bi-x-circle"></i></a>
                   </div>
                 </div>
               </li>
@@ -40,6 +40,43 @@ const state = reactive({
   task_name: ''
 })
 const addNewTask = () => {
-  alert(state.task_name);
+    
+    
+  if(state.task_name.trim() == ''){
+    return;
+  }else{
+    const newTask = {
+        id: state.tasks.length + 1,
+        name: state.task_name,
+        is_completed: false
+    };
+    state.tasks.push(newTask);
+    state.task_name = '';
+  }
 }
+
+const taskAction = (seletedID,action) => {
+    const findTask = state.tasks.find(task => task.id == seletedID);
+    if(findTask && action == 'completed'){
+        findTask.is_completed = true;
+    }else{
+        findTask.is_completed = false;
+    }
+}
+
+const editTask = (seletedID) => {
+    const findTask = state.tasks.find(task => task.id == seletedID); 
+    if(findTask){
+        state.task_name = findTask.name;
+    }
+} 
+
+const deleteTask = (seletedID) => {
+    const findTask = state.tasks.find(task => task.id == seletedID);
+    if(findTask){
+        state.tasks.splice(state.tasks.indexOf(findTask), 1);
+    }
+}
+
+
 </script>
