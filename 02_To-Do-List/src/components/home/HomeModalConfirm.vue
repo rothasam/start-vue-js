@@ -13,7 +13,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-primary">Yes, i'm sure.</button>
+                <button type="button" class="btn btn-primary" @click="clickYesDelete()">Yes, i'm sure.</button>
             </div>
             </div>
         </div>
@@ -37,6 +37,13 @@ onMounted(() =>{ // mounted means after render html
     homeStore.mdlConfirm = Modal.getOrCreateInstance(document.getElementById('mdlConfirm'));
 
 } )
+
+
+const clickYesDelete = () => {
+    let newArr = homeStore.tasks.filter((item) => item.id != homeStore.seleted_id);
+    homeStore.tasks = newArr;
+    homeStore.mdlConfirm.hide(); 
+}
 
 
 </script>
