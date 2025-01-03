@@ -28,10 +28,15 @@
         </div>
       </div>
     </div>
+
+
+
 </template>
 
 <script setup>
 import { reactive } from 'vue'
+import { useHomeStore } from '@/stores/views/home_store';
+const homeStore = useHomeStore();
 
 const state = reactive({
   tasks:[
@@ -99,11 +104,16 @@ const editTask = (seletedID,seltedTask) => {
     
 } 
 
+// const deleteTask = (seletedID) => {
+//     const findTask = state.tasks.find(task => task.id == seletedID);
+//     if(findTask){
+//         state.tasks.splice(state.tasks.indexOf(findTask), 1);
+//     }
+// khos te
+// }
+
 const deleteTask = (seletedID) => {
-    const findTask = state.tasks.find(task => task.id == seletedID);
-    if(findTask){
-        state.tasks.splice(state.tasks.indexOf(findTask), 1);
-    }
+  homeStore.mdlConfirm.show();
 }
 
 
