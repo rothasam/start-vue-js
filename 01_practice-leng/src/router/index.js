@@ -58,4 +58,30 @@ const router = createRouter({
   ],
 })
 
+// to change tab title
+// router.afterEach((to, from) => {
+//   if(to.meta && to.meta.title){  
+//     document.title = to.meta.title;   
+//   }else{
+//     document.title = 'Untitled';
+//   }
+//   // next()
+// })
+
+router.beforeEach((to, from) => {
+  document.title = to.meta.title
+})
+
+// router.beforeEach((to, from,next) => {  
+//   document.title = to.meta?.title ?? 'Default Title';  
+//   next()
+// })
+// beforeEach() or afterEach() function takes a callback function with three arguments
+// to: the route the user is navigating to.
+// from: the route the user is coming from.
+// next: a function that must be called to continue with the navigation.
+// .meta is a property you can attach to any route in Vue Router, and it can store additional data (like the title of the page, description, etc.).
+
+
+
 export default router
