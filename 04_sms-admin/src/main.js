@@ -1,8 +1,5 @@
-import 'bootstrap/dist/css/bootstrap.min.css'
-import '@fortawesome/fontawesome-free/css/all.min.css'
-import '@/assets/css/main.css'
-import 'animate.css/animate.min.css'
-
+import 'bootstrap/dist/css/bootstrap.css';
+import 'iconoir/css/iconoir.css';
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 
