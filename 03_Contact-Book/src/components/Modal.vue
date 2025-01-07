@@ -1,24 +1,47 @@
 <template>
 
-    <!-- Button trigger modal -->
-<!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-  Launch demo modal
-</button> -->
-
     <!-- Modal -->
     <div class="modal fade" id="modalAdd" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-        <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+        <div class="modal-header pb-0 border-0">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Add new contact</h1>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="modal-body">
-            ...
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
+        <div class="modal-body py-0">
+            <p>Please enter contact's information below.</p>
+            <form action="" @submit.prevent="addContact()">
+                <div class="row">
+                    <div class="col-6">
+                        <div class="form-floating mb-3">
+                            <input 
+                                type="text" class="form-control" placeholder="" 
+                                v-model="state.firstName">
+                            <label for="firstname">First name</label>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-floating mb-3">
+                            <input 
+                                type="text" class="form-control" placeholder="" 
+                                v-model="state.lastName" >
+                            <label for="lastname">Last name</label>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-floating mb-3">
+                            <input 
+                                type="text" class="form-control" placeholder="" 
+                                v-model="state.phone">
+                            <label for="phone">Phone Number</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 mb-3 d-flex justify-content-end">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary ms-3">Add Contact</button>
+                </div>
+            </form>
         </div>
         </div>
     </div>
@@ -27,14 +50,71 @@
 </template>
 
 <script setup>
+
 import { onMounted  } from 'vue';
 import { Modal } from 'bootstrap';
-import {  useAppStore } from '@/stores/store'
+import { useContactStore } from '@/stores/store'
+import { reactive } from 'vue';
+const appStore = useContactStore();
 
-const appStore = useAppStore();
+const state = reactive({
+    firstName: '',
+    lastName: '',
+    phone: '',
+    toAddNew: 1 
+})
+
 
 onMounted(() => {
-    appStore.mdlAdd = Modal.getOrCreateInstance(document.getElementById('modalAdd'));
+    appStore.modal = Modal.getOrCreateInstance(document.getElementById('modalAdd'));
 })
+
+const addContact = () => {
+    if(state.toAddNew == 1){
+        if(appStore.contacts.length > 0){
+            let ids = appStore.contacts.map(item => item.id);
+            let nextId = Math.max(...ids)+1;
+            contactTmey(nextId,state.firstName,state.lastName,state.phone);
+            clearInput();
+        }else{
+            let nextId = 1;
+            contactTmey(nextId,state.firstName,state.lastName,state.phone);
+            clearInput();
+        }
+    }
+    // else{
+    //     // update
+    // }
+
+}
+
+const clickDelete = () => {
+    let newArr = appStore.contacts.filter((item) => item.id == appStore.selected_id);
+    console.log(newArr);
+}
+
+
+
+function clearInput(){
+    state.firstName = '';
+    state.lastName = '';
+    state.phone = '';
+}
+function contactTmey(Id,FirstName,LastName,Phone){
+    const contactTmey = {
+        id: Id,
+        firstName: FirstName,
+        lastName: LastName,
+        phone: Phone,
+
+    };
+    appStore.contacts.push(contactTmey);
+    appStore.modal.hide();
+}
+
+
+
+
+
 
 </script>
