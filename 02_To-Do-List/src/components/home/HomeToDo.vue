@@ -2,7 +2,7 @@
     <div class="container">
       <div class="row">
         <div class="col-4 mx-auto">
-          <h1 class="text-center text-white fw-bold">To Do List</h1>
+          <h1 class="text-center text-white fw-bold mt-5">To Do List</h1>
             <form @submit.prevent="addNewTask()">
               <div class="d-flex my-4">
                 <input type="text" class="form-control rounded-end-0" placeholder="Add a new task" v-model="state.task_name" />
@@ -42,14 +42,17 @@ const state = reactive({
   task_name: '',
   seleted_ID: 0
 })
+
+function pushArray(Id,Task){
+  const newTask = {
+      id: Id,
+      name: Task,
+      is_completed: false
+  };
+  homeStore.tasks.push(newTask);
+}
+
 const addNewTask = () => {
-  
-  // console.log(ids); // return object of id
-/*
-  Math.max(ids);
-  console.log(Math.max(ids));  // return NAN 
-*/
-  // let maxID = Math.max([...ids]);  // create new array
 
   if(state.seleted_ID == 0){
     if(state.task_name.trim() == ''){
@@ -58,23 +61,11 @@ const addNewTask = () => {
     if(homeStore.tasks.length > 0){
       let ids = homeStore.tasks.map(item => item.id);  
       let nextId = Math.max(...ids) + 1;
-      const newTask = {
-        id: nextId,
-        name: state.task_name,
-        is_completed: false
-      };
-      homeStore.tasks.push(newTask);
+      pushArray(nextId,state.task_name);
     }else{
       let nextId = 1;
-      const newTask = {
-        id: nextId,
-        name: state.task_name,
-        is_completed: false
-      };
-      homeStore.tasks.push(newTask);
+      pushArray(nextId,state.task_name);
     }
-    
-    
 
   }else{
     const findTaskID = homeStore.tasks.findIndex(task => task.id == state.seleted_ID);
@@ -86,12 +77,6 @@ const addNewTask = () => {
 }
 
 const taskAction = (seletedID,action) => {
-    // const findTask = homeStore.tasks.find(task => task.id == seletedID);
-    // if(findTask && action == 'completed'){
-    //   findTask.is_completed = true;
-    // }else{
-    //   findTask.is_completed = false;
-    // }
 
     let findTaskID = homeStore.tasks.findIndex(task => task.id == seletedID);
     if(action == 'completed'){
@@ -103,7 +88,6 @@ const taskAction = (seletedID,action) => {
     // the difference between find and findIndex function ?
     // find() return the object and findIndex() return the index of the object
 }
-// we should separate the function above into 2 function 
 
 
 const editTask = (seletedID,seltedTask) => {
@@ -111,14 +95,6 @@ const editTask = (seletedID,seltedTask) => {
     state.seleted_ID = seletedID;
     
 } 
-
-// const deleteTask = (seletedID) => {
-//     const findTask = homeStore.tasks.find(task => task.id == seletedID);
-//     if(findTask){
-//         homeStore.tasks.splice(homeStore.tasks.indexOf(findTask), 1);
-//     }
-// khos te
-// }
 
 const deleteTask = (seletedID) => {
   homeStore.seleted_id = seletedID;

@@ -31,13 +31,11 @@ const homeStore = useHomeStore();
 onMounted(() =>{ // mounted means after render html 
 // what does this mounted meaning ?
     // it means that the code inside this block will be executed after the component(HTML) has been rendered to the DOM.
-
     // The DOM is a tree structure representation of the HTML document.
 
     homeStore.mdlConfirm = Modal.getOrCreateInstance(document.getElementById('mdlConfirm'));
 
 } )
-
 
 const clickYesDelete = () => {
     let newArr = homeStore.tasks.filter((item) => item.id != homeStore.seleted_id);
