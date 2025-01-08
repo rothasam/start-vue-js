@@ -53,7 +53,7 @@
 
 import { onMounted  } from 'vue';
 import { Modal } from 'bootstrap';
-import { useContactStore } from '@/stores/contact_book'
+import { useContactStore } from '@/stores/contact-book'
 import { reactive } from 'vue';
 const appStore = useContactStore();
 

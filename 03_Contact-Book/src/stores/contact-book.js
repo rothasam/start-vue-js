@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
 
-export const useContactStore = defineStore('store.js',{
+export const useContactStore = defineStore('contact-book.js',{
     state: () => ({
         modalAdd: null,
         modalDelete: null,

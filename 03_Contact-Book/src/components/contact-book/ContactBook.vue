@@ -51,7 +51,7 @@
 </template>
 <script setup>
 
-import { useContactStore } from '@/stores/contact_book';
+import { useContactStore } from '@/stores/contact-book';
 const contactManage = useContactStore();
 
 
