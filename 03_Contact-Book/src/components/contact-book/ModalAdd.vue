@@ -1,11 +1,11 @@
 <template>
 
     <!-- Modal -->
-    <div class="modal fade" id="modalAdd" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="modalAdd"  tabindex="-1" >
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
         <div class="modal-header pb-0 border-0">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">Add new contact</h1>
+            <h1 class="modal-title fs-5" >Add new contact</h1>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body py-0">
@@ -53,7 +53,7 @@
 
 import { onMounted  } from 'vue';
 import { Modal } from 'bootstrap';
-import { useContactStore } from '@/stores/store'
+import { useContactStore } from '@/stores/contact_book'
 import { reactive } from 'vue';
 const appStore = useContactStore();
 
@@ -66,7 +66,8 @@ const state = reactive({
 
 
 onMounted(() => {
-    appStore.modal = Modal.getOrCreateInstance(document.getElementById('modalAdd'));
+    appStore.modalAdd = Modal.getOrCreateInstance(document.getElementById('modalAdd'));
+    console.log(appStore.modalAdd);
 })
 
 const addContact = () => {
@@ -88,10 +89,7 @@ const addContact = () => {
 
 }
 
-const clickDelete = () => {
-    let newArr = appStore.contacts.filter((item) => item.id == appStore.selected_id);
-    console.log(newArr);
-}
+
 
 
 
@@ -109,7 +107,7 @@ function contactTmey(Id,FirstName,LastName,Phone){
 
     };
     appStore.contacts.push(contactTmey);
-    appStore.modal.hide();
+    appStore.modalAdd.hide();
 }
 
 

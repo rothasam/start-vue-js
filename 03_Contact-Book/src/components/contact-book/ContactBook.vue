@@ -39,26 +39,32 @@
                             </div>
                             <div>
                                 <a 
-                                    @click="contactManage.deleteContact(contact.id)"
+                                    @click="showDeleteModal(contact.id)"
                                     role="button" class="text-danger fs-5"><i class="iconoir-trash"></i>
                                 </a>
                             </div>
                         </li>
                     </ul>
                 </div>
-
             </div>
         </div>
 </template>
 <script setup>
 
-import { useContactStore } from '@/stores/store';
+import { useContactStore } from '@/stores/contact_book';
 const contactManage = useContactStore();
 
 
 const showAddModal = () => {
-    contactManage.modal.show();
+    contactManage.modalAdd.show();
 }
+
+const showDeleteModal = (selectedID) => {
+    // console.log(contactManage.selected_id)
+    contactManage.deleteContact(selectedID)
+    contactManage.modalDelete.show();
+}
+
 
 
 

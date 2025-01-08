@@ -2,7 +2,9 @@ import { defineStore } from 'pinia';
 
 export const useContactStore = defineStore('store.js',{
     state: () => ({
-        modal: null,
+        modalAdd: null,
+        modalDelete: null,
+        selected_id: null,
         contacts: [
             {
                 id: 1,
@@ -17,19 +19,13 @@ export const useContactStore = defineStore('store.js',{
                 phone: '09988776'
             }
         ],
-        seleted_id: 0
         
     }),
 
     actions: {
-        // deleteContact: (seletedID) => {
-        //     console.log(seletedID);
-        //     this.seleted_id = seletedID;
-        // }
         deleteContact(selectedID) {
-            console.log(selectedID); // Log the passed selected ID
-            this.selected_id = selectedID; // Correctly set the selected ID in the store
-            this.modal.show();
+            console.log(selectedID); 
+            this.selected_id = selectedID;
         },
     }
 })
