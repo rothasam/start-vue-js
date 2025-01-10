@@ -4,11 +4,13 @@
     </main>
 
     <ModalAdd/>
+    <ModalDelete/>
 </template>
 
 <script setup>
 import ContactBook from '@/components/contact-book/ContactBook.vue';
-import ModalAdd from '@/components/Modal.vue';
+import ModalAdd from '@/components/contact-book/ModalAdd.vue';
+import ModalDelete from '@/components/contact-book/ModalDelete.vue';
 
 
 </script>

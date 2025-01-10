@@ -1,11 +1,11 @@
 <template>
 
     <!-- Modal -->
-    <div class="modal fade" id="modalAdd" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="modalAdd"  tabindex="-1" >
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
         <div class="modal-header pb-0 border-0">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">Add new contact</h1>
+            <h1 class="modal-title fs-5" >Add new contact</h1>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body py-0">
@@ -38,7 +38,7 @@
                     </div>
                 </div>
                 <div class="col-12 mb-3 d-flex justify-content-end">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Cancel</button>
                     <button type="submit" class="btn btn-primary ms-3">Add Contact</button>
                 </div>
             </form>
@@ -53,7 +53,7 @@
 
 import { onMounted  } from 'vue';
 import { Modal } from 'bootstrap';
-import { useContactStore } from '@/stores/store'
+import { useContactStore } from '@/stores/contact-book'
 import { reactive } from 'vue';
 const appStore = useContactStore();
 
@@ -66,7 +66,8 @@ const state = reactive({
 
 
 onMounted(() => {
-    appStore.modal = Modal.getOrCreateInstance(document.getElementById('modalAdd'));
+    appStore.modalAdd = Modal.getOrCreateInstance(document.getElementById('modalAdd'));
+    console.log(appStore.modalAdd);
 })
 
 const addContact = () => {
@@ -74,6 +75,7 @@ const addContact = () => {
         if(appStore.contacts.length > 0){
             let ids = appStore.contacts.map(item => item.id);
             let nextId = Math.max(...ids)+1;
+            
             contactTmey(nextId,state.firstName,state.lastName,state.phone);
             clearInput();
         }else{
@@ -88,10 +90,7 @@ const addContact = () => {
 
 }
 
-const clickDelete = () => {
-    let newArr = appStore.contacts.filter((item) => item.id == appStore.selected_id);
-    console.log(newArr);
-}
+
 
 
 
@@ -109,7 +108,7 @@ function contactTmey(Id,FirstName,LastName,Phone){
 
     };
     appStore.contacts.push(contactTmey);
-    appStore.modal.hide();
+    appStore.modalAdd.hide();
 }
 
 
