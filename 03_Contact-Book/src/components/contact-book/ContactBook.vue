@@ -8,27 +8,28 @@
                             <p>Save your friend's contact.</p>
                         </div>
                         <div>
-                            <a role="button" 
-                            @click="showAddModal()" 
-                            class="fs-4" ><i class="iconoir-plus-circle-solid"></i></a>
+                            <a 
+                                role="button" 
+                                @click="showAddModal()" 
+                                class="fs-4" ><i class="iconoir-plus-circle-solid"></i>
+                            </a>
                         </div>
                     </div>
-                    <div class="mb-3">
-                        <!-- <input type="text" class="form-control" placeholder="Search contact" /> -->
-                         <!-- Bind the input to the searchQuery state in Pinia -->
+                    <div class="mb-3 position-relative">
                         <input
                             type="text"
                             class="form-control"
                             placeholder="Search contact"
                             v-model="contactManage.searchQuery"  
                         />
+                        <span class="search-icon"><i class="iconoir-search"></i></span>
                     </div>
                     <ul class="list-group">
                         <!-- v-for="contact in contactManage.contacts"  -->
                         <li 
-                        v-for="contact in filteredContacts" 
-                        :key="contact.id"
-                            class="list-group-item contact-info">
+                            v-for="contact in filteredContacts" 
+                            :key="contact.id"
+                            class="list-group-item contact-info" >
 
                             <div class="d-flex justify-content-start">
                                 <span class="cover">
