@@ -7,8 +7,8 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-footer border-0">
-                    <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">No</button>
-                    <button type="button" class="btn btn-primary" @click="clickDelete()">Yes</button>
+                    <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">No</button>
+                    <button type="button" class="btn btn-danger" @click="clickDelete()">Yes</button>
                 </div>
             </div>
         </div>

@@ -5,18 +5,19 @@ export const useContactStore = defineStore('contact-book.js',{
         modalAdd: null,
         modalDelete: null,
         selected_id: null,
+        searchQuery: '',
         contacts: [
             {
                 id: 1,
                 firstName: 'Rotha',
-                lastName: 'haha',
+                lastName: 'Sam',
                 phone: '012444444'
             },
             {
                 id: 2,
-                firstName: 'Rotha',
-                lastName: 'haha',
-                phone: '09988776'
+                firstName: 'Sok',
+                lastName: 'San',
+                phone: '099872344'
             }
         ],
         
@@ -27,5 +28,21 @@ export const useContactStore = defineStore('contact-book.js',{
             console.log(selectedID); 
             this.selected_id = selectedID;
         },
+        
+        searchContacts() {
+            const query = this.searchQuery.toLowerCase();
+            const filteredContacts = []; 
+        
+            for (const contact of this.contacts) {
+                const fullName = `${contact.firstName} ${contact.lastName}`.toLowerCase();
+        
+                if (fullName.includes(query) || contact.phone.includes(query)) {
+                    filteredContacts.push(contact);
+                }
+            }
+        
+            return filteredContacts; 
+        }
+        
     }
 })

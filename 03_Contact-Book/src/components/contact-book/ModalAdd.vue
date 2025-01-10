@@ -38,7 +38,7 @@
                     </div>
                 </div>
                 <div class="col-12 mb-3 d-flex justify-content-end">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Cancel</button>
                     <button type="submit" class="btn btn-primary ms-3">Add Contact</button>
                 </div>
             </form>
@@ -75,6 +75,7 @@ const addContact = () => {
         if(appStore.contacts.length > 0){
             let ids = appStore.contacts.map(item => item.id);
             let nextId = Math.max(...ids)+1;
+            
             contactTmey(nextId,state.firstName,state.lastName,state.phone);
             clearInput();
         }else{
