@@ -2,7 +2,7 @@
 
 <template>
     <div class="container">
-        <div class="d-flex justify-content-between align-items-center">
+        <!-- <div class="d-flex justify-content-between align-items-center">
             <h1 class="fw-bold my-5">Student Management System</h1>
             <button class="btn bg-primary text-white">
                 <span ><i class="iconoir-plus"></i></span>
@@ -23,7 +23,11 @@
             <StudentList/>
             
         </tbody>
-        </table>
+        </table> -->
+
+        <div class="row">
+            <StudentList/>
+        </div>
     </div>
 </template>
 
