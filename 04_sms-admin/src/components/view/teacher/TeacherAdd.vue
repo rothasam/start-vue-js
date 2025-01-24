@@ -62,7 +62,7 @@ const saveTeacher = () => {
     frmData.append('name', teacherStore.frm.name)
     frmData.append('email', teacherStore.frm.email)
 
-    console.log([...frmData]);
+    // console.log([...frmData]);
 
     if(teacherStore.selected_id == 0){
         axios.post('/api/teachers/store.php', frmData)
