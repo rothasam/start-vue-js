@@ -1,0 +1,37 @@
+:root{
+    --dark-blue: #1a2639;
+    --grey: #3e4a61;
+    --orange: #c24d2c;
+    --white: #ffffff;
+
+}
+body{
+    font-family: "Kantumruy Pro";
+}
+h1,h2,h3,h4,h5,h6{
+    font-weight: 600;
+}
+.box-shadow{
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 16px;
+}
+.btnPrimary{
+    border: 0;
+    background-color: var(--orange);
+    transition: all 0.3s ease-in-out;
+    color: var(--white);
+    padding: 8px 12px;
+
+    &:hover{
+        background-color: #b54121;
+    }
+}
+.center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.between{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
