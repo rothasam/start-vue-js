@@ -3,8 +3,13 @@ import axios from 'axios';
 
 export const useStudentStore = defineStore('view/student_store',{
     state: () => ({
+        frm: {
+            name: '',
+            phone: '',
+        },
         modalAddStu: null,
-        students: []
+        students: [],
+        selected_id: 0
     }),
     actions: {
         onLoadStudent() {
