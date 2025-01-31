@@ -1,16 +1,20 @@
 <template>
-    <div class="col-12 my-5 gx-0">
+    <div class="col-12 my-5">
         <div class="head-wrap py-3">
             <div>
-                <h3>Homework3</h3>
-                <p class="mb-0">Customer's informatoin management system</p>
+                <h3>{{ t('header.title') }}</h3>
+                <p class="mb-0">{{ t('header.description') }}</p>
             </div>
             <div class="d-flex gap-3">
-                <div class="flag">
+                <div class="flag" @click="switchTokhmer()"
+                    :class="{ 'bg-orange' : locale == 'km'}"
+                >
                     <img src="@/assets/img/flag/cambodia_flag.svg" alt="cambodia-flag">
                     <span>ភាសាខ្មែរ</span>
                 </div>
-                <div class="flag">
+                <div class="flag" @click="switchToEnglish()"
+                    :class="{ 'bg-orange' : locale == 'en'}"
+                >
                     <img src="@/assets/img/flag/en_flag.svg" alt="english-flag">
                     <span>English</span>
                 </div>
@@ -18,6 +22,27 @@
         </div>
     </div>
 </template>
+
+
+<script setup>
+import { useI18n } from 'vue-i18n';
+const {locale,t} = useI18n();
+const switchLanguage = () => {
+    locale.value = locale.value == 'en' ? 'km' : 'en';
+}
+
+const switchToEnglish = () => {
+    locale.value = 'en'
+
+}
+const switchTokhmer = () => {
+    locale.value = 'km'
+
+}
+
+
+</script>
+
 
 
 <style scoped>

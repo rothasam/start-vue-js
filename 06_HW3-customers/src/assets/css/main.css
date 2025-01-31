@@ -1,7 +1,7 @@
 :root{
     --dark-blue: #1a2639;
     --grey: #3e4a61;
-    --orange: #c24d2c;
+    --orange: #e06d4d;
     --white: #ffffff;
 
 }
@@ -11,8 +11,22 @@ body{
 h1,h2,h3,h4,h5,h6{
     font-weight: 600;
 }
+.bg-orange{
+  background-color: var(--orange);
+  color: var(--white)!important;
+}
 .box-shadow{
     box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 16px;
+}
+.form-label{
+  font-weight: 500;
+}
+.form-control, .form-select{
+  border-radius: 0;
+}
+.form-control:focus, .form-select:focus{
+  box-shadow: none!important;
+  border-color: var(--orange);
 }
 .btnPrimary{
     border: 0;
@@ -35,3 +49,36 @@ h1,h2,h3,h4,h5,h6{
     justify-content: space-between;
     align-items: center;
 }
+
+.btn{
+  border-radius: 0;
+}
+
+.error-feedback{
+  color:red;
+}
+.input-contain {
+
+    &+.error-feedback {
+      display: none;
+    }
+  
+    &.invalid {
+      &+.error-feedback {
+        display: block;
+        color: red;
+      }
+    }
+
+
+  }
+  .input-contain.invalid{
+    .form-control:focus{
+      border-color: var(--red-500)!important;
+      background-color: var(--red-50)!important;
+      &~span{
+        color: var(--red-500)!important;
+      }
+    }
+    
+  }
